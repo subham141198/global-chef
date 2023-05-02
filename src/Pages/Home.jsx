@@ -1,17 +1,24 @@
 import ChefNavbar from "../Components/Header/Header";
-import { useLoaderData } from "react-router-dom";
 
+import Banner from "../Components/Banner/Banner";
+import AllChefComponent from "../Components/AllChef/allChef";
+import Specialised from "../Components/SpeciledSection/Specialised";
+import AboutUs from "../Components/About/About";
+import Footer from "../Components/Footer/Footer";
 
 export default function HomePage() {
-  
-  const datas = useLoaderData();
-
- console.log(datas)
 
   return (
     <>
       <ChefNavbar />
-      <h1>this is home page</h1>
+      <Banner />
+      <AllChefComponent/>
+      <hr />
+      <Specialised/>
+      <hr />
+      <AboutUs/>
+     
+      <Footer/>
     </>
   );
 }
