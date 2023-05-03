@@ -3,7 +3,7 @@ export default function AboutUs() {
     <>
       <h1 className="text-center p-5">What Customers are saying About Us</h1>
       <div className="container">
-        <div className="row row-cols-3">
+        <div className="row row-cols-md-3  row-cols-1">
           <div className="col d-flex flex-column">
             <div className="imageContainer p-2 d-flex justify-content-center align-items-center">
               <img

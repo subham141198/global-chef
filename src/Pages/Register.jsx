@@ -4,8 +4,9 @@ import ChefNavbar from "../Components/Header/Header";
 import {Alert } from "react-bootstrap"
 import { Link, useNavigate} from "react-router-dom"
 import { useState } from "react";
-import { useUserAuth } from "../Provider/AuthProvider";
-import {  updateProfile } from "firebase/auth";
+import { AuthContext } from "../Provider/AuthProvider";
+import { useContext } from "react";
+import { updateProfile } from "firebase/auth";
 
 
 function RegisterForm() {
@@ -14,7 +15,7 @@ function RegisterForm() {
   const [password, setpassword] = useState("")
   const [image, setimage] = useState("")
   const [error, seterror] = useState("")
-  const { SignUp } = useUserAuth();
+  const { SignUp } = useContext(AuthContext);
   const navigate = useNavigate()
  
  const handleSubmit = async(e) =>{
@@ -30,6 +31,7 @@ function RegisterForm() {
       navigate("/")
       }
       catch(err){
+        e.target.reset()
         seterror(err.message)
       }
   };

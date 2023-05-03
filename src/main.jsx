@@ -7,7 +7,7 @@ import Detials from "./Pages/Details";
 import { AuthProvider } from "./Provider/AuthProvider";
 import RegisterForm from "./Pages/Register";
 import LoginForm from "./Pages/Login";
-import ProtectedRoute from "./Provider/ProtectedRouter";
+import ProtectedRoute from "./Provider/ProtectedRoute";
 import Blog from "./Components/Blog/Blog";
 
 function allChefLoader({ request }) {
@@ -25,6 +25,7 @@ const router = createBrowserRouter([
   {
     path: "details/:chefid",
     element: <ProtectedRoute><Detials /></ProtectedRoute> ,
+    loader: allChefLoader,
   },
   {
     path: "/register",

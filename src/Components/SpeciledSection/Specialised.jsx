@@ -6,7 +6,7 @@ export default function Specialised() {
     <>
       <h1 className="text-center p-5">We Specialised in Intimate Catering</h1>
       <div className="container">
-        <div className="row row-cols-4">
+        <div className="row row-cols-lg-4 row-cols-md-3 row-cols-1">
           <div className="col">
             <Card >
               <Card.Img variant="top" src="https://img.freepik.com/free-photo/chicken-skewers-with-slices-sweet-peppers-dill_2829-18813.jpg" />

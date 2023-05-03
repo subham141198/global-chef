@@ -11,12 +11,12 @@ import { getAuth } from "firebase/auth"
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
-  apiKey: "AIzaSyBtfhlIuFFxdI8b0BFlHtj9e4mqPxs-dWk",
-  authDomain: "global-chef-hub.firebaseapp.com",
-  projectId: "global-chef-hub",
-  storageBucket: "global-chef-hub.appspot.com",
-  messagingSenderId: "709406801180",
-  appId: "1:709406801180:web:42e7bfeb1eee6df6f48ed9"
+  apiKey: import.meta.env.VITE_APIKEY,
+  authDomain: import.meta.env.VITE_AUTHDOMAIN,
+  projectId: import.meta.env.VITE_PROJECTID,
+  storageBucket: import.meta.env.STORAGEBUCKET,
+  messagingSenderId: import.meta.env.VITE_MESSAGINGSENDERI ,
+  appId: import.meta.env.VITE_APPID,
 };
   
 // Initialize Firebase
