@@ -11,8 +11,8 @@ function Banner() {
             alt="First slide"
           />
           <Carousel.Caption>
-            <h3>First slide label</h3>
-            <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
+            <h3>Wedding and Galals Event</h3>
+            <p>If you want to become a great chef, you have to work with great chefs.</p>
           </Carousel.Caption>
         </Carousel.Item>
         <Carousel.Item>
@@ -23,8 +23,8 @@ function Banner() {
           />
 
           <Carousel.Caption>
-            <h3>Second slide label</h3>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+            <h3>Special Events </h3>
+            <p>Being a chef would be too much hard work.</p>
           </Carousel.Caption>
         </Carousel.Item>
         <Carousel.Item>
@@ -35,9 +35,9 @@ function Banner() {
           />
 
           <Carousel.Caption>
-            <h3>Third slide label</h3>
+            <h3>Cooking Class</h3>
             <p>
-              Praesent commodo cursus magna, vel scelerisque nisl consectetur.
+            I always knew I wanted to be a chef.
             </p>
           </Carousel.Caption>
         </Carousel.Item>
