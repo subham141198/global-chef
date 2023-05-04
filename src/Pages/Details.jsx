@@ -3,6 +3,7 @@ import ChefNavbar from "../Components/Header/Header";
 import SingleRecipeComponent from "../Components/SingleRecipe/SingleRecipe";
 import { ToastContainer} from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
+import Footer from "../Components/Footer/Footer";
 
 
 function Detials() {
@@ -54,7 +55,7 @@ function Detials() {
         </div>
         <ToastContainer></ToastContainer>
       </div>
-      
+      <Footer/>
       
     </>
 

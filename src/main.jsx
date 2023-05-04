@@ -8,7 +8,7 @@ import { AuthProvider } from "./Provider/AuthProvider";
 import RegisterForm from "./Pages/Register";
 import LoginForm from "./Pages/Login";
 import ProtectedRoute from "./Routes/ProtectedRoute";
-import Blog from "./Components/Blog/Blog";
+import Blog from "./Pages/Blog";
 
 function allChefLoader({ request }) {
   return fetch("https://global-chef-server-debabratachakraborty880-gmailcom.vercel.app/alldata", {
