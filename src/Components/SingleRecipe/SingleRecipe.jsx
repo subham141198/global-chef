@@ -3,12 +3,14 @@
 import Card from 'react-bootstrap/Card';
 import ListGroup from 'react-bootstrap/ListGroup';
 import { Button } from 'react-bootstrap';
-import {toast} from 'react-toastify';
+import { toast } from "react-toastify";
 
 function SingleRecipeComponent(props) {
     function handleFav(event){
-       props.setshowToast(true)
-       
+       toast.success("added to Fav",{
+        position:toast.POSITION.TOP_RIGHT
+      })
+       event.target.disabled = true
     }
     console.log(props);
     return (
