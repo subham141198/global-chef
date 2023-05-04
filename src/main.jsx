@@ -7,7 +7,7 @@ import Detials from "./Pages/Details";
 import { AuthProvider } from "./Provider/AuthProvider";
 import RegisterForm from "./Pages/Register";
 import LoginForm from "./Pages/Login";
-import ProtectedRoute from "./Provider/ProtectedRoute";
+import ProtectedRoute from "./Routes/ProtectedRoute";
 import Blog from "./Components/Blog/Blog";
 
 function allChefLoader({ request }) {
