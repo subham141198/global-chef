@@ -11,7 +11,7 @@ import ProtectedRoute from "./Routes/ProtectedRoute";
 import Blog from "./Components/Blog/Blog";
 
 function allChefLoader({ request }) {
-  return fetch("http://localhost:5000/alldata", {
+  return fetch("https://global-chef-server-debabratachakraborty880-gmailcom.vercel.app/alldata", {
     signal: request.signal,
   });
 }
