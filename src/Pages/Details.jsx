@@ -1,23 +1,14 @@
 import { useParams, useLoaderData } from "react-router-dom"
 import ChefNavbar from "../Components/Header/Header";
 import SingleRecipeComponent from "../Components/SingleRecipe/SingleRecipe";
-import { ToastContainer,toast } from "react-toastify";
-import { useState } from "react";
+import { ToastContainer} from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css';
+
 
 function Detials() {
   const { chefid } = useParams();
   const ChefDetails = useLoaderData()
-  const [showToast, setshowToast] = useState(false)
-
-  console.log(showToast)
-  if(showToast){
-    toast.success("added to Fav",{
-      position:toast.POSITION.TOP_CENTER
-    })
-  }
- 
   const singleChefDetail = ChefDetails.find((chefdata) => chefdata.id === parseInt(chefid));
-
 
   return (
     <>
@@ -56,14 +47,15 @@ function Detials() {
         <div className="row row-cols-2 gy-3">
 
         {singleChefDetail.recipes.map((recipe) => (
-            <SingleRecipeComponent key={recipe.id} recipe={recipe} setshowToast={setshowToast}/>
+            <SingleRecipeComponent key={recipe.id} recipe={recipe}/>
           
             
           ))}
         </div>
+        <ToastContainer></ToastContainer>
       </div>
       
-      <ToastContainer></ToastContainer>
+      
     </>
 
   );
