@@ -1,6 +1,6 @@
 import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
-import { Navbar, NavDropdown } from "react-bootstrap";
+import { Navbar, NavDropdown, OverlayTrigger,Tooltip } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../../Provider/AuthProvider";
 import { useContext } from "react";
@@ -10,6 +10,15 @@ function ChefNavbar() {
   const { user } = useContext(AuthContext);
   const { LogOut } = useContext(AuthContext);
   const navigate = useNavigate();
+
+  const tooltip = (
+    <Tooltip id="tooltip" placement="left">
+      {user?.displayName || null}
+    </Tooltip>
+  );
+
+
+
   const handleLogout = () => {
     LogOut().then(() => {
       navigate("/");
@@ -34,7 +43,7 @@ function ChefNavbar() {
             <Nav className="mr-auto"></Nav>
             <Nav>
               {
-                user ? <><NavDropdown title={<img className="rounded-circle"src={user.photoURL} alt="Profile" width={35} />} id="collasible-nav-dropdown">
+                user ? <><NavDropdown title={<OverlayTrigger placement="left" overlay={tooltip}><img className="rounded-circle"src={user.photoURL} alt="Profile" width={35} /></OverlayTrigger>} id="collasible-nav-dropdown">
                   <NavDropdown.Item>{user.email}</NavDropdown.Item>
                   <NavDropdown.Divider />
                   <NavDropdown.Item onClick={handleLogout}>Sign Out</NavDropdown.Item>

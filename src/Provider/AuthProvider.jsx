@@ -1,9 +1,10 @@
 /* eslint-disable react/prop-types */
 import { createContext,useEffect, useState } from "react";
-import { createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, signInWithPopup,onAuthStateChanged, GithubAuthProvider  } from "firebase/auth"
+import { createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, signInWithPopup,onAuthStateChanged, GithubAuthProvider, GoogleAuthProvider  } from "firebase/auth"
 import {auth} from "../Firebase/Firebase.config"
 export const AuthContext = createContext(null); 
 const githubAuthProvider = new GithubAuthProvider();
+const googleAuthProvider = new GoogleAuthProvider();
 
 
 
@@ -27,6 +28,10 @@ export function AuthProvider({children}){
         setloading(true)
         return signInWithPopup(auth,githubAuthProvider)
     }
+    function signInWithGoogle(){
+        setloading(true)
+        return signInWithPopup(auth,googleAuthProvider)
+    }
 
 
     useEffect(() => {
@@ -39,11 +44,10 @@ export function AuthProvider({children}){
       }, []);
     
       const value = {
-        SignUp,Login,LogOut,signInWithGithub
+        user,loading,SignUp,Login,LogOut,signInWithGithub,signInWithGoogle
       };
 
 
 
-    return <AuthContext.Provider  value={{user,loading,...value}}>{children}</AuthContext.Provider>
+    return <AuthContext.Provider  value={{...value}}>{children}</AuthContext.Provider>
 }
-

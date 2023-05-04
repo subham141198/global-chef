@@ -99,3 +99,6 @@ body{
   .ingredientItems{
     text-transform: capitalize;
   }
+  .recipe-method{
+    list-style-type: none;
+  }

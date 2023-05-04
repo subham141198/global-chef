@@ -21,7 +21,7 @@ function ShingleChef(porps) {
           <ListGroup.Item><span className="fw-bold" >Recipies: </span>{porps.chefdata.no_of_recipes} </ListGroup.Item>
         </ListGroup>
         <Card.Body>
-          <Card.Link className="btn btn-primary" href={'/details/'+ porps.chefdata.id }>Card Link</Card.Link>
+          <Card.Link className="btn btn-warning" href={'/details/'+ porps.chefdata.id }>View Recipes</Card.Link>
         </Card.Body>
       </Card>
     </div>

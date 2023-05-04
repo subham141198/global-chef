@@ -2,11 +2,19 @@
 
 import Card from 'react-bootstrap/Card';
 import ListGroup from 'react-bootstrap/ListGroup';
+import { Button } from 'react-bootstrap';
+import {toast} from 'react-toastify';
 
 function SingleRecipeComponent(props) {
-    console.log(props)
+    function handleFav(event){
+       props.setshowToast(true)
+       
+    }
+    console.log(props);
     return (
+        <>
         <div className="col">
+            
             <Card>
                 <Card.Img variant="top" height={300} src={props.recipe.banner_image} />
                 <Card.Body>
@@ -23,7 +31,7 @@ function SingleRecipeComponent(props) {
                     </ListGroup.Item>
                     <ListGroup.Item>
                     <Card.Header>Method</Card.Header>
-                    <ul>
+                    <ul className='recipe-method'>
                         {props.recipe.recipe_method.split("\n").map((method, index) => (
                             <li key={index}>{method}</li>
                         ))}
@@ -31,11 +39,11 @@ function SingleRecipeComponent(props) {
                     </ListGroup.Item>
                     </ListGroup>
 
-                    <Card.Link href="#">Card Link</Card.Link>
-                    <Card.Link href="#">Another Link</Card.Link>
+                    <Button variant="warning" onClick={handleFav}>Add To Favourite</Button>{' '}
                 </Card.Body>
             </Card>
         </div>
+        </>
     );
 }
 
