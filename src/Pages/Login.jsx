@@ -10,13 +10,15 @@ import { useContext } from "react";
 
 
 
+
+
 function LoginForm() {
   const [email, setemail] = useState("")
   const [password, setpassword] = useState("")
   const [error, seterror] = useState("")
-  const { Login, signInWithGithub, signInWithGoogle } = useContext(AuthContext);
+  const { Login, signInWithGithub, signInWithGoogle} = useContext(AuthContext);
   const location = useLocation();
-  console.log(location)
+
   const from = location.state?.from?.pathname || "/"
 
 
@@ -46,7 +48,7 @@ function LoginForm() {
     }
   };
 
-  const handleGoogleSignIn = async() => {
+  const handleGoogleSignIn = async () => {
     seterror("")
     try {
       await signInWithGoogle()
@@ -57,6 +59,10 @@ function LoginForm() {
 
     }
   }
+
+  
+
+
 
   return (
     <>  <ChefNavbar />
@@ -89,11 +95,22 @@ function LoginForm() {
                   <i className="fa-brands fa-google"></i>
                 </Button>
               </div>
+              <div className="col-12">
+                <Link className="btn btn-warning w-100 mt-2" to="/phonesignin">
+                    <i className="fa-solid fa-phone"></i>
+                  </Link>
+              </div>
             </div>
 
-
-            <span className="text-center"> Dont Have an Account? </span>
+            <div className="row">
+              <div className="col">
+              <span className="text-center"> Dont Have an Account? </span>
             <Link to="/register">Create here</Link>
+              </div>
+
+            
+            </div>
+            
           </div>
         </div>
       </div>

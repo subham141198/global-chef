@@ -9,6 +9,7 @@ import RegisterForm from "./Pages/Register";
 import LoginForm from "./Pages/Login";
 import ProtectedRoute from "./Routes/ProtectedRoute";
 import Blog from "./Pages/Blog";
+import PhoneLoginForm from "./Pages/PhoneNoLogin";
 
 function allChefLoader({ request }) {
   return fetch("https://global-chef-server-debabratachakraborty880-gmailcom.vercel.app/alldata", {
@@ -38,6 +39,10 @@ const router = createBrowserRouter([
   {
     path: "/blog",
     element: <Blog />,
+  },
+  {
+    path: "/phonesignin",
+    element: <PhoneLoginForm />,
   },
 ]);
 

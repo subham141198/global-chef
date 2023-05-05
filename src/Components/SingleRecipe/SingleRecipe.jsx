@@ -21,6 +21,7 @@ function SingleRecipeComponent(props) {
                 <Card.Img variant="top" height={300} src={props.recipe.banner_image} />
                 <Card.Body>
                     <h2>{props.recipe.name}</h2>
+                    <Card.Text><strong>Rating: </strong>{props.recipe.rating}/10</Card.Text>
                     <ListGroup variant="flush">
                     <ListGroup.Item>
                     <Card.Header>Ingredients</Card.Header>
