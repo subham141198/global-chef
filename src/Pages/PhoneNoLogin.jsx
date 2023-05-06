@@ -6,48 +6,54 @@ import { useState } from "react";
 import { Alert } from "react-bootstrap"
 import { AuthContext } from "../Provider/AuthProvider";
 import { useContext } from "react";
-import { RecaptchaVerifier } from "firebase/auth";
-import { auth } from "../Firebase/Firebase.config"
+
+import PhoneInput from 'react-phone-input-2'
+import 'react-phone-input-2/lib/material.css'
+
 
 
 function PhoneLoginForm() {
-    const [name, setname] = useState("")
-    const [phoneNo, setphoneNo] = useState(0)
-    const [otp, setotp] = useState(0)
+
+    const [phoneNo, setphoneNo] = useState("")
     const [error, seterror] = useState("")
-    const [message, setmessage] = useState("")
-    const { phoneNoSignIn } = useContext(AuthContext);
+    const [otp, setotp] = useState("")
+    const [showOtpForm, setshowOtpForm] = useState(false)
+    const [confirmObj, setconfirmObj] = useState("")
+    const { setreCaptcha } = useContext(AuthContext);
     const location = useLocation();
+    const from = location.state?.from?.pathname || "/"
+    const navigate = useNavigate()
+    console.log(showOtpForm)
+    
 
 
-
-    // const from = location.state?.from?.pathname || "/"
-    // const navigate = useNavigate()
-
-if(!window.recaptchaVerifier){
-    window.recaptchaVerifier = new RecaptchaVerifier('recaptcha-container', {
-        'size': "invisible",
-        'callback': (response) => {
-          onSignInSubmit();
+    async function getOtp(e) {
+        e.preventDefault();
+        seterror("")
+        if (phoneNo === "" || phoneNo === undefined) {
+            return seterror("Please provide a phone number")
         }
-      }, auth);
+        try {
+            const response = await setreCaptcha("+"+phoneNo)
+            console.log(response)
+            setconfirmObj(response)
+            setshowOtpForm(true)
+        } catch (err) {
+            seterror(err.message)
+        }
     }
 
 
-    function onSignInSubmit() {
-        const appVerifier = window.recaptchaVerifier;
-
-        phoneNoSignIn(phoneNo, appVerifier)
-            .then(result => {
-                setmessage(result)
-            })
-            .catch(error => {
-                seterror(error.message)
-            })
+   async function varifyOtp(e){
+        e.preventDefault();
+        if(otp === "" || otp === undefined) return seterror("Please provide your OTP")
+            try{
+                await confirmObj.confirm(otp)
+                navigate(from, { replace: true })
+            }catch (err) {
+                seterror(err.message)
+            }
     }
-
-
-
 
     return (
         <>  <ChefNavbar />
@@ -57,29 +63,39 @@ if(!window.recaptchaVerifier){
                     <div className="col-12 formContainer">
 
                         <h1 className="text-center">Login Here with Phone Number</h1>
-
-                        <div id="recaptcha-container"></div>
                         {error && <Alert className="alert-danger" varient="danger">{error}</Alert>}
-                        {message && <Alert className="alert-success" varient="success">{message}</Alert>}
-                        <Form onSubmit={onSignInSubmit}>
-                            <Form.Group className="mb-3" controlId="formBasicName">
-                                <Form.Control type="text" placeholder="Enter your Name" onChange={(e) => { setname(e.target.value) }} />
+                        <Form onSubmit={getOtp} style={{display: !showOtpForm ? "block" : "none"}}>
+                            <Form.Group className="mb-3">
+                            <PhoneInput 
+                                    inputProps={{
+                                        required: true
+                                      }}
+                                    country="in"
+                                    placeholder="Enter phone number"
+                                    value={phoneNo}
+                                    onChange={setphoneNo}
+                                    inputClass="w-100"
+                                />
                             </Form.Group>
-                            <Form.Group className="mb-3" controlId="formBasicEmail">
-                                <Form.Control type="tel" placeholder="Enter Phone Number" onChange={(e) => { setphoneNo(e.target.value) }} />
+                            <Form.Group className="mb-3">
+                                <div id="recaptcha-container" />
                             </Form.Group>
-                            <Form.Group className="mb-3" controlId="formBasicPassword">
-                                <Form.Control type="password" placeholder="Enter your OTP" onChange={(e) => { setotp(e.target.value) }} />
-                            </Form.Group>
-                            {/* <Form.Group className="mb-3" controlId="formBasicText">
-                                <Form.Control type="text" placeholder="UserImageLink" onChange={(e) => { setimage(e.target.value) }} />
-                            </Form.Group> */}
 
-                            <div className="row">
-
-                            </div>
                             <Button className="w-100" variant="primary" type="submit">
-                                Login
+                                Send OTP
+                            </Button>
+                        </Form>
+
+                        <Form onSubmit={varifyOtp} style={{display: showOtpForm ? "block" : "none"}}>
+                            <Form.Group className="mb-3">
+                                <Form.Control type="number" placeholder="Enter the OTP" onChange={(e) => { setotp(e.target.value) }} />
+                            </Form.Group>
+                            <Form.Group className="mb-3">
+                                <div id="recaptcha-container" />
+                            </Form.Group>
+
+                            <Button className="w-100" variant="primary" type="submit">
+                                Verify
                             </Button>
                         </Form>
                         <span className="text-center"> Dont Have an Account? </span>

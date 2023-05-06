@@ -1,6 +1,6 @@
 /* eslint-disable react/prop-types */
 import { createContext,useEffect, useState } from "react";
-import { createUserWithEmailAndPassword, signInWithPhoneNumber, signInWithEmailAndPassword, signOut, signInWithPopup,onAuthStateChanged, GithubAuthProvider, GoogleAuthProvider  } from "firebase/auth"
+import { createUserWithEmailAndPassword, signInWithPhoneNumber, signInWithEmailAndPassword, signOut, signInWithPopup,onAuthStateChanged, GithubAuthProvider, GoogleAuthProvider, RecaptchaVerifier  } from "firebase/auth"
 import {auth} from "../Firebase/Firebase.config"
 export const AuthContext = createContext(null); 
 const githubAuthProvider = new GithubAuthProvider();
@@ -32,10 +32,17 @@ export function AuthProvider({children}){
         setloading(true)
         return signInWithPopup(auth,googleAuthProvider)
     }
-    function phoneNoSignIn(phoneNumber,appVerifier){
-        setloading(true)
-        return signInWithPhoneNumber(auth, phoneNumber, appVerifier)
+
+    function setreCaptcha(number){
+        const recaptchVarifier = new RecaptchaVerifier('recaptcha-container', {'size': 'invisible'}, auth);
+        recaptchVarifier.render();
+        return signInWithPhoneNumber(auth, number, recaptchVarifier)
     }
+
+    // function phoneNoSignIn(phoneNumber,appVerifier){
+        
+        
+    // }
 
 
     useEffect(() => {
@@ -48,7 +55,7 @@ export function AuthProvider({children}){
       }, []);
     
       const value = {
-        user,loading,SignUp,Login,LogOut,signInWithGithub,signInWithGoogle,phoneNoSignIn
+        user,loading,SignUp,Login,LogOut,signInWithGithub,signInWithGoogle, setreCaptcha
       };
 
 

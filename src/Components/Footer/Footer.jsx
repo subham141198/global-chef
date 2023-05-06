@@ -10,7 +10,7 @@ export default function Footer() {
       </a>
       <p className="text-muted"><i className="fa-solid fa-location-dot text-white"></i> 153 Williamson Plaza, Maggieberg</p>
       <p className="text-muted"><i className="fa-solid fa-phone text-white"></i> +880 8763482364</p>  
-      <p className="text-muted">&copy; 2022</p>
+      <p className="text-muted">&copy; 2022 Global Chef Hub</p>
     </div>
     <div className="col mb-3">
 
