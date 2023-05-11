@@ -24,7 +24,7 @@ function PhoneLoginForm() {
     const from = location.state?.from?.pathname || "/"
     const navigate = useNavigate()
     console.log(showOtpForm)
-    
+
 
 
     async function getOtp(e) {
@@ -34,7 +34,7 @@ function PhoneLoginForm() {
             return seterror("Please provide a phone number")
         }
         try {
-            const response = await setreCaptcha("+"+phoneNo)
+            const response = await setreCaptcha("+" + phoneNo)
             console.log(response)
             setconfirmObj(response)
             setshowOtpForm(true)
@@ -44,15 +44,15 @@ function PhoneLoginForm() {
     }
 
 
-   async function varifyOtp(e){
+    async function varifyOtp(e) {
         e.preventDefault();
-        if(otp === "" || otp === undefined) return seterror("Please provide your OTP")
-            try{
-                await confirmObj.confirm(otp)
-                navigate(from, { replace: true })
-            }catch (err) {
-                seterror(err.message)
-            }
+        if (otp === "" || otp === undefined) return seterror("Please provide your OTP")
+        try {
+            await confirmObj.confirm(otp)
+            navigate(from, { replace: true })
+        } catch (err) {
+            seterror(err.message)
+        }
     }
 
     return (
@@ -64,12 +64,12 @@ function PhoneLoginForm() {
 
                         <h1 className="text-center">Login Here with Phone Number</h1>
                         {error && <Alert className="alert-danger" varient="danger">{error}</Alert>}
-                        <Form onSubmit={getOtp} style={{display: !showOtpForm ? "block" : "none"}}>
+                        <Form onSubmit={getOtp} style={{ display: !showOtpForm ? "block" : "none" }}>
                             <Form.Group className="mb-3">
-                            <PhoneInput 
+                                <PhoneInput
                                     inputProps={{
                                         required: true
-                                      }}
+                                    }}
                                     country="in"
                                     placeholder="Enter phone number"
                                     value={phoneNo}
@@ -86,7 +86,7 @@ function PhoneLoginForm() {
                             </Button>
                         </Form>
 
-                        <Form onSubmit={varifyOtp} style={{display: showOtpForm ? "block" : "none"}}>
+                        <Form onSubmit={varifyOtp} style={{ display: showOtpForm ? "block" : "none" }}>
                             <Form.Group className="mb-3">
                                 <Form.Control type="number" placeholder="Enter the OTP" onChange={(e) => { setotp(e.target.value) }} />
                             </Form.Group>

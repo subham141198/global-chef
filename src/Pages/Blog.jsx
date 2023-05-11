@@ -3,12 +3,12 @@ import Footer from "../Components/Footer/Footer";
 
 const Blog = () => {
     return (<>
-        <ChefNavbar/>
-        <div>
-            this is blog
-        </div>
-        <Footer/>
-        </>
+        <ChefNavbar />
+            <div>
+                this is blog
+            </div>
+        <Footer />
+    </>
     );
 };
 
